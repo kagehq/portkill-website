@@ -61,7 +61,7 @@ import Footer from "../components/footer.astro";
   </div>
 
   <!-- Moon - Adjusted for more realism -->
-  <button type="button" class="fixed top-4 right-4 md:top-8 md:right-8 w-12 h-12 md:w-16 md:h-16 moon animate-float-moon z-[9999] cursor-pointer border-0 bg-transparent p-0">
+  <button type="button" id="theme-toggle-moon" class="fixed top-4 right-4 md:top-8 md:right-8 w-12 h-12 md:w-16 md:h-16 moon animate-float-moon z-[9999] cursor-pointer border-0 bg-transparent p-0">
     <!-- Moon body -->
     <div class="relative w-full h-full">
       <!-- Base moon with enhanced gradient -->
@@ -322,7 +322,7 @@ import Footer from "../components/footer.astro";
               <span class="text-white group">
                 <span class="font-semibold group-hover:text-blue-300 transition-colors duration-300 magnetic-text">{item.title}</span>
                 <span class="mx-1.5 text-gray-500">—</span>
-                <span class="text-ob-gray-color group-hover:text-white/70 transition-colors duration-300" set:html={item.description}></span>
+                <span class="text-ob-gray-color font-medium group-hover:text-white/70 transition-colors duration-300" set:html={item.description}></span>
           </span>
             </div>
         </li>
@@ -332,8 +332,8 @@ import Footer from "../components/footer.astro";
   </main>
 
   <!-- Theme Toggle Button -->
-  <!-- <div class="fixed bottom-8 right-2 -translate-x-1/2 z-50">
-    <button id="theme-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-500/10 backdrop-blur-sm border border-gray-500/20 text-white hover:bg-white/20 transition-all duration-300">
+  <!-- <div class="fixed bottom-8 right-8 z-50">
+    <button id="theme-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-500/30 backdrop-blur-sm border border-gray-500/40 text-white hover:bg-white/30 transition-all duration-300 shadow-lg">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon-dark h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
       </svg>
@@ -1063,7 +1063,7 @@ import Footer from "../components/footer.astro";
     padding: 0 50px;
     justify-content: center;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 700;
     letter-spacing: 0.5px;
     white-space: nowrap;
@@ -1142,7 +1142,44 @@ import Footer from "../components/footer.astro";
   body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  /* Smooth transitions for all theme-dependent elements */
+  * {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  /* Specific transitions for key elements */
+  .text-white, .text-blue-300, .text-ob-gray-color, .text-gray-500 {
+    transition: color 0.5s ease;
+  }
+
+  .bg-gray-500\/10, .bg-blue-300\/10, .bg-white\/10 {
+    transition: background-color 0.5s ease;
+  }
+
+  .border-gray-500\/40, .border-gray-700\/50 {
+    transition: border-color 0.5s ease;
+  }
+
+  /* Moon/Sun transformation with smooth transition */
+  .moon {
+    transition: all 0.8s ease;
+  }
+
+  /* Jet banner smooth transition */
+  .banner-text {
+    transition: background 0.5s ease, border-color 0.5s ease;
+  }
+
+  /* Decorative elements smooth transition */
+  .absolute.h-1.w-1.rounded-full.bg-white,
+  .absolute.h-0\.5.w-0\.5.rounded-full.bg-white,
+  .absolute.h-px.w-px.rounded-full.bg-white,
+  .w-12.h-0\.5.bg-blue-300\/30,
+  .w-2.h-2.rounded-full.bg-blue-300\/20 {
+    transition: background-color 0.5s ease, opacity 0.5s ease;
   }
 
   /* Component theme styles */
@@ -1199,6 +1236,46 @@ import Footer from "../components/footer.astro";
   /* :root.light #theme-toggle-btn:hover {
     background-color: rgba(0, 0, 0, 0.1);
   } */
+
+  /* Introducing tag border in light mode */
+  /* :root.light .absolute.top-0.left-0.w-full.h-px,
+  :root.light .absolute.bottom-0.left-0.w-full.h-px {
+    background: rgba(0, 0, 0, 0.5) !important;
+  } */
+
+  /* Introducing tag rounded corners in light mode */
+  :root.light .inline-flex.items-center.justify-center.px-3.py-0\.5 {
+    border: 1px solid #000000 !important;
+  }
+
+  /* Decorative line with dots in light mode */
+  :root.light .w-12.h-0\.5.bg-blue-300\/30 {
+    background-color: #000000 !important;
+  }
+
+  :root.light .w-2.h-2.rounded-full.bg-blue-300\/20 {
+    background-color: #000000 !important;
+  }
+
+  /* Screenshot section background in light mode */
+  :root.light .bg-blue-300 {
+    background-color: #ffffff !important;
+  }
+
+  /* GITHUB link text in light mode */
+  :root.light .text-ob-gray-color {
+    color: #000000 !important;
+  }
+
+  /* Jet banner text background in light mode */
+  :root.light .banner-text {
+    background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    ) !important;
+    border: 1px solid rgba(0, 0, 0, 0.6) !important;
+  }
 
   /* Icon transitions */
   .icon-dark, .icon-light {
@@ -1348,7 +1425,11 @@ import Footer from "../components/footer.astro";
   // Theme toggle functionality
   document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('theme-toggle-btn');
+    const moonBtn = document.getElementById('theme-toggle-moon');
     const root = document.documentElement;
+    
+    console.log('Theme toggle button found:', toggleBtn);
+    console.log('Moon toggle button found:', moonBtn);
     
     // Check for saved theme preference or use system preference
     const savedTheme = localStorage.getItem('theme');
@@ -1358,27 +1439,38 @@ import Footer from "../components/footer.astro";
     // Set initial theme
     if (!isDark) {
       root.classList.add('light');
-      document.body.style.backgroundColor = '#ffffff';
     }
     
     // Toggle theme function
-    function toggleTheme() {
+    function toggleTheme(event) {
+      event.preventDefault();
+      console.log('Theme toggle clicked');
       const isCurrentlyDark = !root.classList.contains('light');
       
       if (isCurrentlyDark) {
         root.classList.add('light');
-        document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('theme', 'light');
+        console.log('Switched to light mode');
       } else {
         root.classList.remove('light');
-        document.body.style.backgroundColor = '#000000';
         localStorage.setItem('theme', 'dark');
+        console.log('Switched to dark mode');
       }
     }
     
-    // Add click handler
+    // Add click handler to both buttons
     if (toggleBtn) {
       toggleBtn.addEventListener('click', toggleTheme);
+      console.log('Click handler attached to theme toggle button');
+    } else {
+      console.error('Theme toggle button not found!');
+    }
+    
+    if (moonBtn) {
+      moonBtn.addEventListener('click', toggleTheme);
+      console.log('Click handler attached to moon button');
+    } else {
+      console.error('Moon toggle button not found!');
     }
   });
 </script>

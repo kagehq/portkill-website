@@ -13,7 +13,7 @@
 			>
 				<span class="text-xs leading-[1.6] text-gray-500 font-medium">APO</span>
 				<span class="flex items-center text-sm leading-[1.6] text-white font-bold">
-					<img src="/assets/img/kage-long-blue.png" alt="Kage" class="h-5"/>
+					<img src="/assets/img/kage-long-blue.png" alt="Kage" class="h-5 kage-logo"/>
 				</span>
 			</a>
 			<!-- <div class="flex items-center relative">
@@ -68,4 +68,17 @@
 </footer>
 
 <style>
+  /* Switch Kage logo to white version in light mode */
+  :root.light .kage-logo {
+    content: url('/assets/img/kage-long-white.png');
+  }
+
+  /* Social media icons in light mode */
+  :root.light .text-gray-500 {
+    color: #000000 !important;
+  }
+
+  :root.light .text-gray-500:hover {
+    color: #ffffff !important;
+  }
 </style>
