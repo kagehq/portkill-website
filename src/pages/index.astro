@@ -1428,8 +1428,8 @@ import Footer from "../components/footer.astro";
     const moonBtn = document.getElementById('theme-toggle-moon');
     const root = document.documentElement;
     
-    console.log('Theme toggle button found:', toggleBtn);
-    console.log('Moon toggle button found:', moonBtn);
+    // console.log('Theme toggle button found:', toggleBtn);
+    // console.log('Moon toggle button found:', moonBtn);
     
     // Check for saved theme preference or use system preference
     const savedTheme = localStorage.getItem('theme');
@@ -1444,31 +1444,31 @@ import Footer from "../components/footer.astro";
     // Toggle theme function
     function toggleTheme(event) {
       event.preventDefault();
-      console.log('Theme toggle clicked');
+      // console.log('Theme toggle clicked');
       const isCurrentlyDark = !root.classList.contains('light');
       
       if (isCurrentlyDark) {
         root.classList.add('light');
         localStorage.setItem('theme', 'light');
-        console.log('Switched to light mode');
+        // console.log('Switched to light mode');
       } else {
         root.classList.remove('light');
         localStorage.setItem('theme', 'dark');
-        console.log('Switched to dark mode');
+        // console.log('Switched to dark mode');
       }
     }
     
     // Add click handler to both buttons
     if (toggleBtn) {
       toggleBtn.addEventListener('click', toggleTheme);
-      console.log('Click handler attached to theme toggle button');
+      // console.log('Click handler attached to theme toggle button');
     } else {
       console.error('Theme toggle button not found!');
     }
     
     if (moonBtn) {
       moonBtn.addEventListener('click', toggleTheme);
-      console.log('Click handler attached to moon button');
+      // console.log('Click handler attached to moon button');
     } else {
       console.error('Moon toggle button not found!');
     }
