@@ -183,7 +183,11 @@ import Footer from "../components/footer.astro";
         href="https://github.com/kagehq/port-kill"
         class="group relative flex items-center text-sm font-medium gap-2 px-4 py-2 text-ob-gray-color hover:text-white transition-all duration-300 opacity-0 animate-slide-in animation-delay-500"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="currentColor" class="size-4">
+          <path d="M7 .175c-3.872 0-7 3.128-7 7 0 3.084 2.013 5.71 4.79 6.65.35.066.482-.153.482-.328v-1.181c-1.947.415-2.363-.941-2.363-.941-.328-.81-.787-1.028-.787-1.028-.634-.438.044-.416.044-.416.7.044 1.071.722 1.071.722.635 1.072 1.641.766 2.035.59.066-.459.24-.765.437-.94-1.553-.175-3.193-.787-3.193-3.456 0-.766.262-1.378.721-1.881-.065-.175-.306-.897.066-1.86 0 0 .59-.197 1.925.722a6.754 6.754 0 0 1 1.75-.24c.59 0 1.203.087 1.75.24 1.335-.897 1.925-.722 1.925-.722.372.963.131 1.685.066 1.86.46.48.722 1.115.722 1.88 0 2.691-1.641 3.282-3.194 3.457.24.219.481.634.481 1.29v1.926c0 .197.131.415.481.328C11.988 12.884 14 10.259 14 7.175c0-3.872-3.128-7-7-7z" fill-rule="evenodd"/>
+        </svg>
         <span>GITHUB</span>
+        <span class="bg-blue-300/10 text-blue-300 px-2 py-0.5 rounded-full text-xs font-mono" id="github-stars-1">1.3k</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 opacity-40">
           <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
 						</svg>
@@ -262,7 +266,11 @@ import Footer from "../components/footer.astro";
         href="https://github.com/kagehq/port-kill"
         class="group relative flex items-center justify-center text-sm font-medium gap-2 px-4 py-2 text-ob-gray-color hover:text-white transition-all duration-300 opacity-0 animate-slide-in animation-delay-500"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="currentColor" class="size-3.5">
+          <path d="M7 .175c-3.872 0-7 3.128-7 7 0 3.084 2.013 5.71 4.79 6.65.35.066.482-.153.482-.328v-1.181c-1.947.415-2.363-.941-2.363-.941-.328-.81-.787-1.028-.787-1.028-.634-.438.044-.416.044-.416.7.044 1.071.722 1.071.722.635 1.072 1.641.766 2.035.59.066-.459.24-.765.437-.94-1.553-.175-3.193-.787-3.193-3.456 0-.766.262-1.378.721-1.881-.065-.175-.306-.897.066-1.86 0 0 .59-.197 1.925.722a6.754 6.754 0 0 1 1.75-.24c.59 0 1.203.087 1.75.24 1.335-.897 1.925-.722 1.925-.722.372.963.131 1.685.066 1.86.46.48.722 1.115.722 1.88 0 2.691-1.641 3.282-3.194 3.457.24.219.481.634.481 1.29v1.926c0 .197.131.415.481.328C11.988 12.884 14 10.259 14 7.175c0-3.872-3.128-7-7-7z" fill-rule="evenodd"/>
+        </svg>
         <span>GITHUB</span>
+        <span class="bg-blue-300/10 text-blue-300 px-2 py-0.5 rounded-full text-xs font-mono" id="github-stars-2">1.3k</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 opacity-40">
           <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
 						</svg>
@@ -1267,6 +1275,12 @@ import Footer from "../components/footer.astro";
     color: #000000 !important;
   }
 
+  /* GitHub stars background in light mode */
+  :root.light [id^="github-stars-"] {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    color: #000000 !important;
+  }
+
   /* Feature item title hover in light mode */
   :root.light .group:hover .group-hover\:text-blue-300 {
     color: #ffffff !important;
@@ -1406,8 +1420,46 @@ import Footer from "../components/footer.astro";
     });
   }
 
+  // GitHub star count fetcher
+  async function fetchGitHubStars() {
+    try {
+      const response = await fetch('https://api.github.com/repos/kagehq/port-kill');
+      if (!response.ok) throw new Error('Failed to fetch GitHub data');
+      
+      const data = await response.json();
+      const starCount = data.stargazers_count;
+      
+      // Format the number (e.g., 1300 -> 1.3k)
+      const formatStars = (count) => {
+        if (count >= 1000) {
+          return (count / 1000).toFixed(1) + 'k';
+        }
+        return count.toString();
+      };
+      
+      const formattedStars = formatStars(starCount);
+      
+      // Update both star count elements
+      const starElements = document.querySelectorAll('[id^="github-stars-"]');
+      starElements.forEach(element => {
+        element.textContent = formattedStars;
+      });
+      
+      console.log(`Updated GitHub stars to: ${formattedStars}`);
+    } catch (error) {
+      console.warn('Failed to fetch GitHub stars:', error);
+      // Keep the fallback value (1.3k) if API fails
+    }
+  }
+
   // Initialize copy buttons
   document.addEventListener('DOMContentLoaded', () => {
+    // Fetch GitHub stars on page load
+    fetchGitHubStars();
+    
+    // Set up periodic refresh (every 6 hours)
+    setInterval(fetchGitHubStars, 6 * 60 * 60 * 1000);
+
     // Original copy button
     const button = document.querySelector('#copy-button');
     if (button) {
