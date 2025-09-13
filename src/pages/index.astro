@@ -131,6 +131,33 @@ import Footer from "../components/footer.astro";
     <div class="absolute inset-[25%] bg-gradient-radial from-blue-300/8 via-transparent to-transparent rounded-full blur-2xl mix-blend-screen animate-pulse-slow"></div>
   </div>
 
+  <!-- Playful arrow pointing to moon -->
+  <div class="fixed top-8 right-4 md:top-36 md:right-5 z-[9999] pointer-events-none moon-arrow-container md:block hidden">
+    <div class="relative">
+      <!-- Arrow text -->
+      <div class="text-blue-300 px-3 py-1.5 rounded-full text-xs font-semibold animate-bounce-slow moon-arrow-text">
+        Click me!
+      </div>
+      <!-- Hand-drawn style arrow pointing up towards moon -->
+      <div class="absolute -top-6 left-1/2 transform moon-arrow-pointer">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 22C10 22 8 20 10 18C12 16 8 14 10 12C12 10 8 8 10 6C12 4 10 2 10 2" 
+                stroke="rgb(147, 197, 253)" 
+                stroke-width="2" 
+                fill="none" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"/>
+          <path d="M6 6L10 2L14 6" 
+                stroke="rgb(147, 197, 253)" 
+                stroke-width="2" 
+                fill="none" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
   <main class="relative w-full px-4 md:px-0 md:max-w-2xl text-sm mb-16 md:mb-24">
     <!-- Hero section with enhanced styling -->
     <div class="text-white w-full md:w-64 mx-auto text-center my-6 md:my-10 relative">
@@ -497,6 +524,49 @@ import Footer from "../components/footer.astro";
 
   .animate-pulse-slow {
     animation: pulse-slow 12s ease-in-out infinite;
+  }
+
+  /* Moon arrow animations */
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-8px) scale(1.05);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+  }
+
+  @keyframes arrow-wiggle {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateX(-50%) translateY(-2px) rotate(-1deg);
+    }
+    50% {
+      transform: translateX(-50%) translateY(1px) rotate(0.5deg);
+    }
+    75% {
+      transform: translateX(-50%) translateY(-1px) rotate(-0.5deg);
+    }
+  }
+
+  .moon-arrow-pointer {
+    animation: arrow-wiggle 2s ease-in-out infinite;
+  }
+
+  /* Moon arrow hover effects */
+  .moon-arrow-container:hover .moon-arrow-text {
+    transform: scale(1.1);
+    background-color: rgba(147, 197, 253, 1);
+  }
+
+  .moon-arrow-container:hover .moon-arrow-pointer {
+    animation-duration: 1s;
   }
 
   .border-gradient-blue {
@@ -1279,6 +1349,16 @@ import Footer from "../components/footer.astro";
   :root.light [id^="github-stars-"] {
     background-color: rgba(0, 0, 0, 0.1) !important;
     color: #000000 !important;
+  }
+
+  /* Moon arrow in light mode */
+  :root.light .moon-arrow-text {
+    /* background-color: rgba(0, 0, 0, 0.9) !important; */
+    /* color: #ffffff !important; */
+  }
+
+  :root.light .moon-arrow-pointer svg path {
+    stroke: #000000 !important;
   }
 
   /* Feature item title hover in light mode */
