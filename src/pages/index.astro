@@ -1,0 +1,1471 @@
+---
+import Layout from "../layouts/layout.astro";
+import Footer from "../components/footer.astro";
+---
+
+<Layout
+  title="Port Kill - Kill dev ports"
+  description="Monitors and kill dev ports."
+  card="https://portkill.com/assets/img/portkill.png"
+  url="https://portkill.com/"
+>
+  <!-- Interactive glow effect - Only show on desktop -->
+  <!-- <div id="glow-container" class="fixed inset-0 pointer-events-none z-40 hidden md:block">
+    <div class="interactive-glow"></div>
+  </div> -->
+
+  <!-- Decorative patterns -->
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <!-- Jet with contrail and banner -->
+    <div class="jet-container hidden md:block">
+      <div class="jet">
+        <div class="jet-body"></div>
+        <div class="contrail"></div>
+        <div class="banner">
+          <div class="banner-text font-bold">Kill dev ports</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stars - Reduced quantity for mobile -->
+    <div class="fixed inset-0 -z-10">
+      <!-- Large stars - Reduced for mobile -->
+      <div class="absolute h-1 w-1 rounded-full bg-white top-[15%] left-[10%] animate-twinkle md:block hidden"></div>
+      <div class="absolute h-1 w-1 rounded-full bg-white top-[25%] left-[35%] animate-twinkle animation-delay-1000"></div>
+      <div class="absolute h-1 w-1 rounded-full bg-white top-[10%] left-[50%] animate-twinkle animation-delay-2000 md:block hidden"></div>
+      <div class="absolute h-1 w-1 rounded-full bg-white top-[20%] left-[80%] animate-twinkle animation-delay-1500"></div>
+      <div class="absolute h-1 w-1 rounded-full bg-white top-[40%] left-[25%] animate-twinkle animation-delay-500 md:block hidden"></div>
+      
+      <!-- Medium stars - Reduced for mobile -->
+      <div class="absolute h-0.5 w-0.5 rounded-full bg-white top-[30%] left-[15%] animate-twinkle animation-delay-750"></div>
+      <div class="absolute h-0.5 w-0.5 rounded-full bg-white top-[18%] left-[45%] animate-twinkle animation-delay-1750 md:block hidden"></div>
+      <div class="absolute h-0.5 w-0.5 rounded-full bg-white top-[35%] left-[75%] animate-twinkle animation-delay-2250"></div>
+      
+      <!-- Small stars - Reduced for mobile -->
+      <div class="absolute h-px w-px rounded-full bg-white top-[28%] left-[20%] animate-twinkle-fast animation-delay-250"></div>
+      <div class="absolute h-px w-px rounded-full bg-white top-[15%] left-[40%] animate-twinkle-fast animation-delay-1250 md:block hidden"></div>
+      <div class="absolute h-px w-px rounded-full bg-white top-[35%] left-[65%] animate-twinkle-fast animation-delay-2250"></div>
+      
+      <!-- Star clusters - Reduced for mobile -->
+      <div class="absolute top-[8%] left-[30%] rotate-[15deg] md:block hidden">
+        <div class="h-px w-px rounded-full bg-white animate-twinkle-fast"></div>
+        <div class="h-px w-px rounded-full bg-white -translate-x-1 translate-y-1 animate-twinkle-fast animation-delay-500"></div>
+        <div class="h-px w-px rounded-full bg-white translate-x-1 translate-y-1 animate-twinkle-fast animation-delay-1000"></div>
+      </div>
+    </div>
+
+    <!-- Glowing orbs - Adjusted size for mobile -->
+    <div class="fixed top-0 left-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-500/10 rounded-full blur-[80px] md:blur-[120px] mix-blend-soft-light"></div>
+    <div class="fixed bottom-0 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-400/10 rounded-full blur-[60px] md:blur-[100px] mix-blend-soft-light"></div>
+    <div class="fixed top-1/2 -translate-y-1/2 right-1/4 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-blue-300/10 rounded-full blur-[40px] md:blur-[80px] mix-blend-soft-light"></div>
+  </div>
+
+  <!-- Moon - Adjusted for more realism -->
+  <button type="button" class="fixed top-4 right-4 md:top-8 md:right-8 w-12 h-12 md:w-16 md:h-16 moon animate-float-moon z-[9999] cursor-pointer border-0 bg-transparent p-0">
+    <!-- Moon body -->
+    <div class="relative w-full h-full">
+      <!-- Base moon with enhanced gradient -->
+      <div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#E1E5EA] via-[#D2D5DB] to-[#9CA3AF] shadow-xl"></div>
+      
+      <!-- Enhanced moon texture layers -->
+      <div class="absolute inset-0 rounded-full opacity-90 mix-blend-overlay" 
+          style="background-image: radial-gradient(circle at 30% 30%, 
+            rgba(255,255,255,0.2) 0%,
+            rgba(255,255,255,0.3) 10%,
+            transparent 20%,
+            rgba(255,255,255,0.15) 30%,
+            transparent 40%,
+            rgba(255,255,255,0.1) 50%,
+            transparent 60%,
+            rgba(255,255,255,0.08) 70%,
+            transparent 80%
+          );"></div>
+      
+      <!-- Enhanced Mare (dark areas) with more natural patterns -->
+      <div class="absolute inset-0 rounded-full">
+        <div class="absolute top-[15%] left-[25%] w-[45%] h-[40%] rounded-full bg-gradient-to-br from-gray-600/30 to-gray-700/20 opacity-30 blur-[2px] transform rotate-12"></div>
+        <div class="absolute bottom-[20%] right-[15%] w-[50%] h-[35%] rounded-full bg-gradient-to-br from-gray-600/25 to-gray-700/15 opacity-25 blur-[2px] transform -rotate-6"></div>
+        <div class="absolute top-[55%] left-[10%] w-[35%] h-[30%] rounded-full bg-gradient-to-br from-gray-600/20 to-gray-700/10 opacity-20 blur-[2px] transform rotate-3"></div>
+      </div>
+
+      <!-- Enhanced craters with more detail -->
+      <div class="absolute inset-0 rounded-full">
+        <!-- Large craters with enhanced shadows -->
+        <div class="absolute top-[22%] left-[18%] w-3 h-3 rounded-full bg-gradient-to-br from-gray-300/90 to-gray-400/80 opacity-90 shadow-inner transform -rotate-15">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-t from-gray-600/50 to-transparent"></div>
+          <div class="absolute inset-0 rounded-full shadow-[inset_1px_1px_2px_rgba(255,255,255,0.3)]"></div>
+        </div>
+        <div class="absolute top-[42%] right-[22%] w-4 h-4 rounded-full bg-gradient-to-br from-gray-300/90 to-gray-400/80 opacity-90 shadow-inner transform rotate-40">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-t from-gray-600/50 to-transparent"></div>
+          <div class="absolute inset-0 rounded-full shadow-[inset_1px_1px_2px_rgba(255,255,255,0.3)]"></div>
+        </div>
+        
+        <!-- Medium craters with enhanced detail -->
+        <div class="absolute top-[58%] left-[38%] w-2 h-2 rounded-full bg-gradient-to-br from-gray-300/90 to-gray-400/80 opacity-80 shadow-inner">
+          <div class="absolute inset-0 rounded-full shadow-[inset_0.5px_0.5px_1px_rgba(255,255,255,0.3)]"></div>
+        </div>
+        <div class="absolute bottom-[28%] right-[32%] w-2.5 h-2.5 rounded-full bg-gradient-to-br from-gray-300/90 to-gray-400/80 opacity-80 shadow-inner">
+          <div class="absolute inset-0 rounded-full shadow-[inset_0.5px_0.5px_1px_rgba(255,255,255,0.3)]"></div>
+        </div>
+        
+        <!-- Small craters with subtle detail -->
+        <div class="absolute top-[32%] right-[42%] w-1.5 h-1.5 rounded-full bg-gradient-to-br from-gray-400/80 to-gray-500/70 opacity-70"></div>
+        <div class="absolute bottom-[38%] left-[28%] w-1.5 h-1.5 rounded-full bg-gradient-to-br from-gray-400/80 to-gray-500/70 opacity-70"></div>
+        <div class="absolute top-[52%] right-[22%] w-1 h-1 rounded-full bg-gradient-to-br from-gray-400/80 to-gray-500/70 opacity-70"></div>
+      </div>
+
+      <!-- Enhanced surface highlights -->
+      <div class="absolute inset-0 rounded-full overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-transparent via-white/8 to-white/25 mix-blend-overlay"></div>
+        <div class="absolute -inset-1 bg-gradient-to-r from-transparent via-white/15 to-transparent mix-blend-overlay transform rotate-45"></div>
+      </div>
+
+      <!-- Enhanced glow effects -->
+      <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-blue-300/10 to-transparent opacity-70 mix-blend-screen"></div>
+      <div class="absolute -inset-4 rounded-full bg-gradient-radial from-blue-300/25 via-blue-400/8 to-transparent blur-xl mix-blend-screen"></div>
+    </div>
+  </button>
+  <!-- Enhanced ambient light for moon -->
+  <div class="fixed top-4 right-4 md:top-8 md:right-8 w-64 h-64 md:w-96 md:h-96 opacity-40 pointer-events-none moon-ambient z-[9998]">
+    <div class="absolute inset-0 bg-gradient-radial from-blue-300/15 via-blue-400/8 to-transparent rounded-full blur-3xl mix-blend-screen"></div>
+    <div class="absolute inset-[25%] bg-gradient-radial from-blue-300/8 via-transparent to-transparent rounded-full blur-2xl mix-blend-screen animate-pulse-slow"></div>
+  </div>
+
+  <main class="relative w-full px-4 md:px-0 md:max-w-2xl text-sm mb-16 md:mb-24">
+    <!-- Hero section with enhanced styling -->
+    <div class="text-white w-full md:w-64 mx-auto text-center my-6 md:my-10 relative">
+      <!-- Introducing tag -->
+      <div class="mb-6 relative opacity-0 animate-slide-in">
+        <div class="inline-flex items-center justify-center px-3 py-0.5 text-[10px] font-semibold tracking-wider text-blue-300 uppercase bg-blue-300/10 rounded-full relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-300/0 via-blue-300/10 to-blue-300/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></div>
+          <span class="relative">Introducing</span>
+          <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-300/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-300/50 to-transparent"></div>
+        </div>
+      </div>
+
+      <div class="relative">       
+        <div class="font-bold text-6xl text-blue-300 hover:scale-105 transition-transform duration-300 cursor-default opacity-0 animate-slide-in animation-delay-100">
+          <span class="inline-block hover:animate-float magnetic-text">Port Kill</span>
+        </div>
+        
+        <!-- Decorative line with dots -->
+        <div class="flex items-center justify-center gap-2 my-4 opacity-0 animate-slide-in animation-delay-200">
+          <div class="w-2 h-2 rounded-full bg-blue-300/20"></div>
+          <div class="w-12 h-0.5 bg-blue-300/30 rounded-full"></div>
+          <div class="w-2 h-2 rounded-full bg-blue-300/20"></div>
+        </div>
+        
+        <div class="text-ob-gray-color mt-2 font-medium relative opacity-0 animate-slide-in animation-delay-300">
+          The easist and fastest way to monitors and kill dev ports.
+        </div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <!-- <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-8 mb-4">
+      <button
+        id="copy-button"
+        class="group relative flex items-center font-medium text-sm gap-2 px-4 py-2 rounded-lg border border-gray-500/40 border-dashed text-white transition-all duration-300 opacity-0 animate-slide-in animation-delay-400"
+      >
+        <span class="font-mono import-text">npm i <span class="text-blue-300">@envkit/nextjs</span></span>
+        <div class="copy-feedback absolute left-1/2 -translate-x-1/2 -top-8 bg-[#111111] text-white px-3 py-1 rounded text-xs opacity-0 transition-opacity">
+          Copied!
+          </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 opacity-40 copy-icon text-ob-gray-color">
+          <path fill-rule="evenodd" d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z" clip-rule="evenodd" />
+            </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-green-500 check-icon hidden">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+            </svg>
+      </button>
+      <a
+        href="https://github.com/kagehq/port-kill"
+        class="group relative flex items-center text-sm font-medium gap-2 px-4 py-2 text-ob-gray-color hover:text-white transition-all duration-300 opacity-0 animate-slide-in animation-delay-500"
+      >
+        <span>GITHUB</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 opacity-40">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
+						</svg>
+      </a>
+		</div> -->
+
+    <!-- Screenshot section -->
+    <section class="my-6 md:my-10">
+      <div class="flex justify-center mb-8 opacity-0 animate-slide-in animation-delay-100">
+        <div class="relative group bg-blue-300 p-1 rounded-xl">
+          <img 
+            src="/assets/img/screenshot.png" 
+            alt="PortKill in action" 
+            class="rounded-lg shadow-2xl border border-gray-700/50 max-w-full h-auto transform group-hover:scale-105 transition-transform duration-300"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation code section -->
+    <section class="my-6 md:my-10">
+      <div class="border border-gray-500/40 border-dashed backdrop-blur-sm rounded-lg mb-3 opacity-0 animate-slide-in animation-delay-100">
+        <div class="divide-y divide-gray-500/40 divide-dashed">
+            <!-- macOS/Linux section -->
+            <div class="p-4 px-5">
+              <h3 class="text-xs font-medium text-gray-500 mb-1 font-mono"># macOS/Linux: Download and run the installer</h3>
+              <div class="flex items-center gap-3">
+                <div class="font-mono text-sm flex-1 overflow-x-auto">
+                  <code class="text-white whitespace-nowrap">curl -fsSL https://raw.githubusercontent.com/kagehq/port-kill/main/install-release.sh | bash</code>
+                </div>
+                <button
+                  id="copy-macos-button"
+                  class="group relative flex items-center font-medium text-sm gap-2 px-2 py-1.5 text-white transition-all duration-300 hover:text-white"
+                >
+                  <div class="copy-feedback absolute left-1/2 -translate-x-1/2 -top-8 bg-[#111111] text-white px-3 py-1 rounded text-xs opacity-0 transition-opacity">
+                    Copied!
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 copy-icon text-ob-gray-color hover:text-white">
+                    <path fill-rule="evenodd" d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z" clip-rule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-green-400 check-icon hidden">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Windows section -->
+            <div class="p-4 px-5">
+              <h3 class="text-xs font-medium text-gray-500 mb-1 font-mono"># Windows: Download and run the installer</h3>
+              <div class="flex items-center gap-3">
+                <div class="font-mono text-sm flex-1 overflow-x-auto">
+                  <code class="text-white whitespace-nowrap">Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/kagehq/port-kill/main/install-release.bat' -OutFile 'install-release.bat'</code>
+                </div>
+                <button
+                  id="copy-windows-button"
+                  class="group relative flex items-center font-medium text-sm gap-2 px-2 py-1.5 text-white transition-all duration-300 hover:text-white"
+                >
+                  <div class="copy-feedback absolute left-1/2 -translate-x-1/2 -top-8 bg-[#111111] text-white px-3 py-1 rounded text-xs opacity-0 transition-opacity">
+                    Copied!
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 copy-icon text-ob-gray-color hover:text-white">
+                    <path fill-rule="evenodd" d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z" clip-rule="evenodd" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-green-400 check-icon hidden">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <a
+        href="https://github.com/kagehq/port-kill"
+        class="group relative flex items-center justify-center text-sm font-medium gap-2 px-4 py-2 text-ob-gray-color hover:text-white transition-all duration-300 opacity-0 animate-slide-in animation-delay-500"
+      >
+        <span>GITHUB</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 opacity-40">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
+						</svg>
+      </a>
+    </section>
+
+    <!-- Features section with enhanced styling -->
+    <section class="my-6 md:my-10">
+      <h2 class="font-semibold mb-8 text-blue-300 relative inline-block group opacity-0 animate-slide-in">
+        What it does:
+        <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-300/30 via-blue-300/50 to-blue-300/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+      </h2>
+      
+      <ul class="space-y-4">
+        {[
+          {
+            title: "Real-time",
+            description: "Scans configurable ports every 5 seconds using `lsof` commands to identify running processes."
+          },
+          {
+            title: "Detection",
+            description: "Detect and identify processes by name, PID, and any associated Docker container."
+          },
+          {
+            title: "Termination",
+            description: "Uses SIGTERM → SIGKILL termination strategy to safely terminate processes."
+          },
+          {
+            title: "Port ranges",
+            description: "Configure and monitor specific ports or port ranges with default being 2000-6000."
+          },
+          {
+            title: "Ignore",
+            description: "Easily exclude specific ports or processes from active monitoring to reduce noise."
+          }
+        ].map((item, index) => (
+          <li class={`flex items-start transform hover:-translate-x-1 transition-transform duration-300 opacity-0 animate-slide-in`} 
+              style={`animation-delay: ${(index + 1) * 150 + 100}ms`}>
+            <div class="relative flex-none w-5 h-5 mr-3 mt-[3px] magnetic-item">
+              <div class="absolute inset-0 bg-white/10 rounded-md group-hover:bg-blue-300/20 transition-colors duration-300"></div>
+              <svg
+                class="absolute inset-0 m-auto text-white w-4 h-4 group-hover:text-blue-300 transition-colors duration-300"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 10.8077L8.38235 13.5L15 6.5"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </div>
+            <div class="flex-1 py-0.5">
+              <span class="text-white group">
+                <span class="font-semibold group-hover:text-blue-300 transition-colors duration-300 magnetic-text">{item.title}</span>
+                <span class="mx-1.5 text-gray-500">—</span>
+                <span class="text-ob-gray-color group-hover:text-white/70 transition-colors duration-300" set:html={item.description}></span>
+          </span>
+            </div>
+        </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+
+  <!-- Theme Toggle Button -->
+  <!-- <div class="fixed bottom-8 right-2 -translate-x-1/2 z-50">
+    <button id="theme-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-500/10 backdrop-blur-sm border border-gray-500/20 text-white hover:bg-white/20 transition-all duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon-dark h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon-light h-5 w-5 hidden" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div> -->
+
+  <Footer/>
+</Layout>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.6s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  /* Magnetic effect */
+  .magnetic-text, .magnetic-item {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  /* Enhanced moon animations */
+  @keyframes float-moon {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg) scale(1);
+      filter: brightness(1) drop-shadow(0 0 20px rgba(147, 197, 253, 0.2));
+    }
+    25% {
+      transform: translateY(-8px) rotate(1deg) scale(1.01);
+      filter: brightness(1.02) drop-shadow(0 0 25px rgba(147, 197, 253, 0.25));
+    }
+    50% {
+      transform: translateY(-12px) rotate(2deg) scale(1.02);
+      filter: brightness(1.05) drop-shadow(0 0 30px rgba(147, 197, 253, 0.3));
+    }
+    75% {
+      transform: translateY(-8px) rotate(1deg) scale(1.01);
+      filter: brightness(1.02) drop-shadow(0 0 25px rgba(147, 197, 253, 0.25));
+    }
+  }
+
+  .animate-float-moon {
+    animation: float-moon 15s ease-in-out infinite;
+  }
+
+  /* Enhanced moon ambient animation */
+  @keyframes ambient-float {
+    0%, 100% {
+      transform: scale(1) translate(0, 0);
+      opacity: 0.4;
+    }
+    25% {
+      transform: scale(1.03) translate(-3px, 3px);
+      opacity: 0.45;
+    }
+    50% {
+      transform: scale(1.05) translate(-5px, 5px);
+      opacity: 0.5;
+    }
+    75% {
+      transform: scale(1.03) translate(-3px, 3px);
+      opacity: 0.45;
+    }
+  }
+
+  .moon-ambient {
+    animation: ambient-float 15s ease-in-out infinite;
+  }
+
+  /* Enhanced pulse animation for ambient glow */
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    25% {
+      opacity: 0.4;
+      transform: scale(1.05);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+    75% {
+      opacity: 0.4;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 12s ease-in-out infinite;
+  }
+
+  .border-gradient-blue {
+    position: relative;
+    border: none;
+  }
+
+  .border-gradient-blue::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 1px;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), transparent 50%, rgba(59, 130, 246, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Enhanced lightning animations */
+  .lightning-cluster {
+    position: absolute;
+    top: -50px;
+    width: 2px;
+    height: 100vh;
+    opacity: 0;
+  }
+
+  .lightning-bolt {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .lightning-main {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, 
+      rgba(255, 255, 255, 0.95),
+      rgba(147, 197, 253, 0.8),
+      rgba(59, 130, 246, 0.4),
+      transparent
+    );
+    filter: drop-shadow(0 0 8px rgba(147, 197, 253, 0.8))
+           drop-shadow(0 0 16px rgba(59, 130, 246, 0.4));
+  }
+
+  .lightning-branch {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.9),
+      rgba(147, 197, 253, 0.7),
+      rgba(59, 130, 246, 0.3),
+      transparent
+    );
+    filter: drop-shadow(0 0 6px rgba(147, 197, 253, 0.7))
+           drop-shadow(0 0 12px rgba(59, 130, 246, 0.3));
+    transform-origin: top;
+  }
+
+  @keyframes lightning-strike {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(-100%) translateX(0) scaleY(0.7);
+      filter: brightness(0.5) blur(3px);
+    }
+    0.5% {
+      opacity: 1;
+      transform: translateY(0) translateX(10px) scaleY(1.1);
+      filter: brightness(1.2) blur(0);
+    }
+    0.75% {
+      transform: translateY(0) translateX(-5px) scaleY(1);
+      filter: brightness(1.1) blur(1px);
+    }
+    1% {
+      opacity: 1;
+      transform: translateY(0) translateX(3px) scaleY(1.05);
+      filter: brightness(1.2) blur(0);
+    }
+    1.25% {
+      transform: translateY(0) translateX(-2px) scaleY(1);
+      filter: brightness(1) blur(1px);
+    }
+    1.5% {
+      opacity: 0;
+      transform: translateY(0) translateX(0) scaleY(1);
+      filter: brightness(0.7) blur(2px);
+    }
+  }
+
+  @keyframes lightning-flash {
+    0%, 100% {
+      opacity: 0;
+      background: linear-gradient(to bottom,
+        rgba(96, 165, 250, 0),
+        rgba(96, 165, 250, 0),
+        transparent
+      );
+    }
+    0.5% {
+      opacity: 1;
+      background: linear-gradient(to bottom,
+        rgba(96, 165, 250, 0.15),
+        rgba(96, 165, 250, 0.1),
+        transparent
+      );
+    }
+    0.75% {
+      opacity: 0.8;
+      background: linear-gradient(to bottom,
+        rgba(96, 165, 250, 0.1),
+        rgba(96, 165, 250, 0.05),
+        transparent
+      );
+    }
+    1% {
+      opacity: 1;
+      background: linear-gradient(to bottom,
+        rgba(96, 165, 250, 0.12),
+        rgba(96, 165, 250, 0.08),
+        transparent
+      );
+    }
+    1.5% {
+      opacity: 0;
+      background: linear-gradient(to bottom,
+        rgba(96, 165, 250, 0),
+        rgba(96, 165, 250, 0),
+        transparent
+      );
+    }
+  }
+
+  .animate-lightning-strike {
+    animation: lightning-strike 5s infinite;
+  }
+
+  .animate-lightning-flash {
+    animation: lightning-flash 5s infinite;
+  }
+
+  .animation-delay-50 { animation-delay: 50ms; }
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-150 { animation-delay: 150ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-2000 { animation-delay: 2000ms; }
+  .animation-delay-3500 { animation-delay: 3500ms; }
+
+  /* Moon enhancements */
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle at center,
+      var(--tw-gradient-from) 0%,
+      var(--tw-gradient-via) 50%,
+      var(--tw-gradient-to) 100%
+    );
+  }
+
+  /* Star animations */
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 1;
+      filter: blur(0px) brightness(1);
+    }
+    50% {
+      opacity: 0.3;
+      filter: blur(1px) brightness(0.7);
+    }
+  }
+
+  @keyframes twinkle-fast {
+    0%, 100% {
+      opacity: 0.7;
+      filter: blur(0px) brightness(1);
+    }
+    50% {
+      opacity: 0.2;
+      filter: blur(1px) brightness(0.5);
+    }
+  }
+
+  .animate-twinkle {
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  .animate-twinkle-fast {
+    animation: twinkle-fast 2s ease-in-out infinite;
+  }
+
+  .animation-delay-250 { animation-delay: 250ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+  .animation-delay-750 { animation-delay: 750ms; }
+  .animation-delay-1000 { animation-delay: 1000ms; }
+  .animation-delay-1250 { animation-delay: 1250ms; }
+  .animation-delay-1500 { animation-delay: 1500ms; }
+  .animation-delay-1750 { animation-delay: 1750ms; }
+  .animation-delay-2000 { animation-delay: 2000ms; }
+  .animation-delay-2250 { animation-delay: 2250ms; }
+  .animation-delay-2500 { animation-delay: 2500ms; }
+  .animation-delay-2750 { animation-delay: 2750ms; }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  /* Reduced animation complexity for mobile */
+  @media (max-width: 768px) {
+    .animate-float-moon {
+      animation: float-moon 8s ease-in-out infinite;
+    }
+
+    .animate-twinkle {
+      animation: twinkle 6s ease-in-out infinite;
+    }
+
+    .animate-twinkle-fast {
+      animation: twinkle-fast 4s ease-in-out infinite;
+    }
+
+    @keyframes float-moon {
+      0%, 100% {
+        transform: translateY(0);
+        filter: brightness(1);
+      }
+      50% {
+        transform: translateY(-5px);
+        filter: brightness(1.02);
+      }
+    }
+  }
+
+  /* Optimize animations with transform and opacity only */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Add touch-specific styles */
+  @media (hover: none) {
+    .hover\:scale-\[1\.02\]:hover {
+      transform: none;
+    }
+    
+    .group-hover\:opacity-100:hover {
+      opacity: 1;
+    }
+  }
+
+  /* Commercial Aircraft Design */
+  .jet-container {
+    position: fixed;
+    top: 1%;
+    left: -400px;
+    width: 600px;
+    height: 120px;
+    animation: fly-across 30s linear infinite;
+    transform: rotate(1deg) scale(0.25);
+    will-change: transform;
+    filter: drop-shadow(0 0 15px rgba(147, 197, 253, 0.15));
+    z-index: -2;
+    opacity: 0.8;
+  }
+
+  .jet {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    filter: blur(0.3px);
+  }
+
+  /* Main fuselage with moon-matching color */
+  .jet-body {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 450px;
+    height: 75px;
+    background: linear-gradient(180deg,
+      rgb(229, 231, 235) 0%, /* gray-200 */
+      rgb(209, 213, 219) 50%, /* gray-300 */
+      rgb(156, 163, 175) 100% /* gray-400 */
+    );
+    clip-path: polygon(
+      100% 50%,
+      99% 45%,
+      98% 42%,
+      96% 39%,
+      94% 37%,
+      92% 35%,
+      90% 33%,
+      85% 31%,
+      80% 30%,
+      70% 29%,
+      60% 28%,
+      50% 28%,
+      40% 28%,
+      30% 29%,
+      20% 30%,
+      15% 31%,
+      10% 33%,
+      8% 35%,
+      6% 37%,
+      4% 39%,
+      2% 42%,
+      1% 45%,
+      0% 50%,
+      1% 55%,
+      2% 58%,
+      4% 61%,
+      6% 63%,
+      8% 65%,
+      10% 67%,
+      15% 69%,
+      20% 70%,
+      30% 71%,
+      40% 72%,
+      50% 72%,
+      60% 72%,
+      70% 71%,
+      80% 70%,
+      85% 69%,
+      90% 67%,
+      92% 65%,
+      94% 63%,
+      96% 61%,
+      98% 58%,
+      99% 55%,
+      100% 50%
+    );
+    transform: translateY(-50%);
+    filter: drop-shadow(0 0 6px rgba(156, 163, 175, 0.5));
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Add boom logo with adjusted color for contrast */
+  .jet-body::after {
+    content: 'The Boom';
+    position: absolute;
+    left: 40%;
+    top: 48%;
+    transform: translateY(-50%);
+    color: rgb(55, 65, 81); /* gray-700 for better contrast */
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.2);
+  }
+
+  /* Enhanced wings with matching color */
+  .jet::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 120px;
+    width: 350px;
+    height: 90px;
+    background: linear-gradient(180deg,
+      rgb(229, 231, 235) 0%,
+      rgb(209, 213, 219) 40%,
+      rgb(156, 163, 175) 100%
+    );
+    clip-path: polygon(
+      100% 48%,
+      95% 45%,
+      90% 42%,
+      80% 40%,
+      70% 38%,
+      60% 36%,
+      50% 35%,
+      40% 34%,
+      30% 33%,
+      20% 34%,
+      10% 36%,
+      5% 39%,
+      0% 41%,
+      2% 48%,
+      5% 53%,
+      10% 58%,
+      20% 61%,
+      30% 63%,
+      40% 64%,
+      50% 65%,
+      60% 64%,
+      70% 63%,
+      80% 61%,
+      90% 58%,
+      95% 55%,
+      100% 53%
+    );
+    transform: translateY(-50%) perspective(200px) rotateX(8deg);
+    filter: drop-shadow(0 0 8px rgba(156, 163, 175, 0.3));
+    z-index: -1;
+    opacity: 0.95;
+  }
+
+  /* Enhanced cockpit windows */
+  .jet-body::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    right: 2%;
+    width: 18%;
+    height: 30%;
+    background: linear-gradient(135deg,
+      rgb(229, 231, 235) 0%, /* gray-200 */
+      rgb(209, 213, 219) 50%, /* gray-300 */
+      rgb(156, 163, 175) 100% /* gray-400 */
+    );
+    clip-path: polygon(
+      100% 35%,
+      80% 25%,
+      60% 20%,
+      40% 15%,
+      20% 13%,
+      0% 10%,
+      0% 90%,
+      20% 87%,
+      40% 85%,
+      60% 80%,
+      80% 75%,
+      100% 65%
+    );
+    filter: drop-shadow(0 0 3px rgba(156, 163, 175, 0.4));
+    backdrop-filter: blur(2px);
+  }
+
+  /* Smoother tail section with matching color */
+  .jet::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    width: 70px;
+    height: 90px;
+    background: linear-gradient(180deg,
+      rgb(229, 231, 235) 0%, /* gray-200 */
+      rgb(209, 213, 219) 50%, /* gray-300 */
+      rgb(156, 163, 175) 100% /* gray-400 */
+    );
+    clip-path: polygon(
+      100% 0%,
+      60% 0%,
+      30% 5%,
+      10% 15%,
+      0% 25%,
+      0% 75%,
+      10% 85%,
+      30% 95%,
+      60% 100%,
+      100% 100%
+    );
+    transform: translateY(-90%);
+    filter: drop-shadow(0 0 4px rgba(156, 163, 175, 0.4));
+    z-index: 1;
+  }
+
+  /* Enhanced contrails */
+  .contrail::before,
+  .contrail::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, 
+      rgba(255,255,255,0.12),
+      rgba(255,255,255,0.08) 30%,
+      rgba(255,255,255,0.05) 50%,
+      rgba(255,255,255,0.03) 70%,
+      transparent
+    );
+    filter: blur(6px);
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: contrail-fade 6s linear infinite;
+  }
+
+  @keyframes contrail-fade {
+    0% {
+      opacity: 0;
+      width: 0;
+      transform: translateY(-50%) translateX(-40px) scale(0.8);
+    }
+    10% {
+      opacity: 0.2;
+    }
+    80% {
+      opacity: 0.2;
+    }
+    100% {
+      opacity: 0;
+      width: 100%;
+      transform: translateY(-50%) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes fly-across {
+    0% {
+      transform: translateX(0) rotate(1deg) scale(0.25);
+    }
+    100% {
+      transform: translateX(calc(100vw + 1200px)) rotate(1deg) scale(0.25);
+    }
+  }
+
+  /* Banner styling */
+  .banner {
+    position: absolute;
+    left: -90%;  /* Position relative to plane's tail */
+    top: 50%;
+    width: 450px;
+    height: 80px;
+    transform-origin: left center;
+    z-index: -1;
+  }
+
+  /* Rope styling */
+  .banner::before {
+    content: '';
+    position: absolute;
+    right: -150px;  /* Increased from -100px to -150px to match new width */
+    top: 5;
+    width: 150px;  /* Increased from 100px to 150px */
+    height: 4px;
+    background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.7)
+    );
+    transform-origin: right center;
+    transform: translateY(-50%) rotate(-2deg);
+    animation: rope-wave 3s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .banner-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      rgba(147, 197, 253, 0.4) 0%,
+      rgba(191, 219, 254, 0.5) 50%,
+      rgba(147, 197, 253, 0.4) 100%
+    );
+    border: 1px solid rgba(147, 197, 253, 0.6);
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transform-origin: left center;
+    animation: banner-wave 4s ease-in-out infinite;
+  }
+
+  @keyframes banner-wave {
+    0%, 100% {
+        transform: rotate(-2deg);
+    }
+    50% {
+        transform: rotate(-4deg);
+    }
+  }
+
+  @keyframes rope-wave {
+    0%, 100% {
+        transform: translateY(-50%) rotate(-2deg) scaleX(1);
+    }
+    50% {
+        transform: translateY(-50%) rotate(-4deg) scaleX(1.02);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .banner {
+        width: 300px;
+    }
+    .banner-text {
+        font-size: 18px;
+        padding: 0 20px;
+    }
+    .banner::before {
+        width: 80px;
+    }
+  }
+
+  .copy-feedback {
+    font-weight: 500;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  .copy-feedback.show {
+    opacity: 1;
+  }
+
+  .import-text, .copy-icon {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  /* Theme variables */
+  :root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --sky-color: transparent;
+    --component-bg: rgba(0, 0, 0, 0.1);
+  }
+
+  :root.light {
+    --bg-color: #ffffff;
+    --text-color: #1F2937;
+    --sky-color: #87CEEB;
+    --component-bg: #ffffff;
+  }
+
+  .backdrop-blur-sm {
+    background-color: var(--component-bg);
+    transition: background-color 0.3s ease;
+  }
+
+  /* Global theme styles */
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Component theme styles */
+  :root.light {
+    /* Text colors */
+    .text-ob-gray-color {
+      @apply text-gray-500;
+     }
+    .text-blue-300 { 
+      @apply text-black;
+     }
+     .text-white {
+      @apply text-black;
+     }
+     .bg-gray-500\/10 {
+      @apply bg-white;
+     }
+     .border-gray-500\/15 {
+      @apply border-gray-500/30;
+     }
+    
+    /* Backgrounds */
+    .bg-blue-300\/10 { 
+     @apply bg-gray-500/20;
+    }
+    .bg-white\/10 { 
+      @apply bg-gray-500/20;
+    }
+    
+    /* Borders */
+    .border-gray-500\/10 { border-color: var(--border-color); }
+    .border-white\/20 { border-color: var(--border-color); }
+    
+    /* Button hover states */
+    .hover\:bg-white\/20:hover { background-color: rgba(0, 0, 0, 0.1); }
+    
+    /* Glowing orbs */
+    .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.05); }
+    .bg-blue-400\/10 { background-color: rgba(37, 99, 235, 0.03); }
+    .bg-blue-300\/10 { background-color: rgba(37, 99, 235, 0.02); }
+  }
+
+  /* Theme toggle button */
+  #theme-toggle-btn {
+    transition: all 0.3s ease;
+  }
+
+  /* :root.light #theme-toggle-btn {
+    color: var(--text-color);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+  } */
+
+  /* :root.light #theme-toggle-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  } */
+
+  /* Icon transitions */
+  .icon-dark, .icon-light {
+    transition: opacity 0.3s ease;
+  }
+
+  :root.light .icon-dark {
+    display: none;
+  }
+
+  :root.light .icon-light {
+    display: block;
+  }
+
+  /* Moon/Sun transformation */
+  .moon {
+    transition: all 0.5s ease;
+  }
+
+  :root.light .moon {
+    transform: scale(1.1);
+  }
+
+  :root.light .moon .absolute.inset-0.rounded-full {
+    background: #FFD700 !important;
+    box-shadow: 
+      inset -4px -4px 8px rgba(255, 180, 0, 0.5),
+      inset 4px 4px 8px rgba(255, 255, 255, 0.5),
+      0 0 30px rgba(255, 215, 0, 0.3);
+  }
+
+  :root.light .moon .absolute.inset-0.rounded-full.opacity-90,
+  :root.light .moon .absolute.inset-0.rounded-full > div,
+  :root.light .moon .absolute.top-\[15\%\],
+  :root.light .moon .absolute.bottom-\[20\%\],
+  :root.light .moon .absolute.top-\[55\%\] {
+    opacity: 0;
+  }
+
+  /* Sun rays */
+  :root.light .moon::before {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 215, 0, 0.2) 0%,
+      transparent 70%
+    );
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Stars to Sky transition */
+  .fixed.inset-0.-z-10 {
+    transition: background-color 0.5s ease;
+  }
+
+  :root.light .fixed.inset-0.-z-10 {
+    background: linear-gradient(180deg, 
+      var(--sky-color) 0%,
+      #B0E2FF 100%
+    );
+  }
+
+  :root.light .absolute.h-1.w-1.rounded-full.bg-white,
+  :root.light .absolute.h-0\.5.w-0\.5.rounded-full.bg-white,
+  :root.light .absolute.h-px.w-px.rounded-full.bg-white {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.2;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.3;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Define the different import commands and their icons
+  const importCommands = [
+    {
+      text: 'npm i <span class="text-blue-300">@envkit/nextjs</span>',
+      command: 'npm i @envkit/nextjs',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 opacity-40 copy-icon text-ob-gray-color">
+              <path fill-rule="evenodd" d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z" clip-rule="evenodd" />
+            </svg>`
+    }
+  ];
+
+  // Installation commands
+  const installationCommands = {
+    macos: 'curl -fsSL https://raw.githubusercontent.com/kagehq/port-kill/main/install-release.sh | bash',
+    windows: 'powershell -Command "Invoke-WebRequest -Uri \'https://raw.githubusercontent.com/kagehq/port-kill/main/install-release.bat\' -OutFile \'install-release.bat\'; .\\install-release.bat"'
+  };
+
+  // Make copyToClipboard function globally accessible
+  window.copyToClipboard = function(text, buttonId) {
+    navigator.clipboard.writeText(text).then(() => {
+      const button = document.querySelector(buttonId);
+      const copyIcon = button.querySelector('.copy-icon');
+      const checkIcon = button.querySelector('.check-icon');
+      const copyFeedback = button.querySelector('.copy-feedback');
+      
+      // Show check icon and feedback text
+      copyIcon.classList.add('hidden');
+      checkIcon.classList.remove('hidden');
+      copyFeedback.classList.add('show');
+      
+      // Reset after 2 seconds
+      setTimeout(() => {
+        copyIcon.classList.remove('hidden');
+        checkIcon.classList.add('hidden');
+        copyFeedback.classList.remove('show');
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
+  }
+
+  // Initialize copy buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    // Original copy button
+    const button = document.querySelector('#copy-button');
+    if (button) {
+      button.onclick = () => window.copyToClipboard(importCommands[0].command, '#copy-button');
+    }
+
+    // macOS copy button
+    const macosButton = document.querySelector('#copy-macos-button');
+    if (macosButton) {
+      macosButton.onclick = () => window.copyToClipboard(installationCommands.macos, '#copy-macos-button');
+    }
+
+    // Windows copy button
+    const windowsButton = document.querySelector('#copy-windows-button');
+    if (windowsButton) {
+      windowsButton.onclick = () => window.copyToClipboard(installationCommands.windows, '#copy-windows-button');
+    }
+  });
+
+  // Theme toggle functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    const root = document.documentElement;
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+    
+    // Set initial theme
+    if (!isDark) {
+      root.classList.add('light');
+      document.body.style.backgroundColor = '#ffffff';
+    }
+    
+    // Toggle theme function
+    function toggleTheme() {
+      const isCurrentlyDark = !root.classList.contains('light');
+      
+      if (isCurrentlyDark) {
+        root.classList.add('light');
+        document.body.style.backgroundColor = '#ffffff';
+        localStorage.setItem('theme', 'light');
+      } else {
+        root.classList.remove('light');
+        document.body.style.backgroundColor = '#000000';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    
+    // Add click handler
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', toggleTheme);
+    }
+  });
+</script>
+
+<script>
+  // Only initialize cursor effects on desktop
+  document.addEventListener('DOMContentLoaded', () => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    
+    if (!isMobile) {
+      // Magnetic effect
+      const magneticItems = document.querySelectorAll('.magnetic-text, .magnetic-item');
+      
+      magneticItems.forEach(item => {
+        item.addEventListener('mousemove', (e: MouseEvent) => {
+          const bounds = item.getBoundingClientRect();
+          const mouseX = e.clientX - bounds.left - bounds.width / 2;
+          const mouseY = e.clientY - bounds.top - bounds.height / 2;
+          const maxDistance = 15;
+          
+          const distance = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
+          const scale = Math.min(distance / 100, 1);
+          
+          const x = (mouseX / bounds.width) * maxDistance * scale;
+          const y = (mouseY / bounds.height) * maxDistance * scale;
+          
+          (item as HTMLElement).style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.1)`;
+        });
+        
+        item.addEventListener('mouseleave', () => {
+          (item as HTMLElement).style.transform = 'translate3d(0, 0, 0) scale(1)';
+        });
+      });
+
+      // Optimize moon parallax
+      const moon = document.querySelector('.moon') as HTMLElement;
+      if (moon) {
+        let rafId: number;
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let currentRotate = 0;
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = (e.clientX / window.innerWidth - 0.5) * 30;
+          mouseY = (e.clientY / window.innerHeight - 0.5) * 30;
+        });
+
+        function animateMoon() {
+          // Smooth parallax movement
+          currentX += (mouseX - currentX) * 0.1;
+          currentY += (mouseY - currentY) * 0.1;
+          currentRotate += (mouseX * 0.5 - currentRotate) * 0.1;
+
+          moon.style.transform = `
+            translate(${currentX}px, ${currentY}px)
+            rotate(${currentRotate}deg)
+            scale(${1 + Math.abs(currentX) * 0.001})
+          `;
+
+          rafId = requestAnimationFrame(animateMoon);
+        }
+
+        animateMoon();
+
+        // Throttle mousemove events
+        let throttleTimeout: ReturnType<typeof setTimeout> | undefined;
+        document.addEventListener('mousemove', (e) => {
+          if (!throttleTimeout) {
+            throttleTimeout = setTimeout(() => {
+              mouseX = (e.clientX / window.innerWidth - 0.5) * 30;
+              mouseY = (e.clientY / window.innerHeight - 0.5) * 30;
+              throttleTimeout = undefined;
+            }, 4000); // ~60fps
+          }
+        });
+        
+        // Cleanup on page unload
+        window.addEventListener('unload', () => {
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+          }
+        });
+      }
+    }
+  });
+</script>
+
+

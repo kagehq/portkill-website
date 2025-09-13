@@ -1,0 +1,231 @@
+:root {
+    /* --main-bg-color: brown; */
+    --dark-bg: #000000;
+    /* --semi-dark-bg: #191F29; */
+    /* --tert-color: #F5BE58; */
+    --white-color: #FFF;
+    /* --blue-color: #06A3F2;
+    --green-color: #4AAE90;  */
+    --fad-dark:#191e26;
+		--gray-color: #888F96;
+    /* --rem: 16; */
+} 
+
+/* .app {
+  font-family: Inter var, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  
+  font-weight: normal;
+} */
+
+
+/* .geist-mono-font {
+  font-family: "Geist Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+html,
+body {
+  @apply w-full;
+  @apply min-h-screen;
+  @apply overscroll-y-none;
+  @apply overscroll-none;
+  scroll-behavior: smooth;
+  /* font-family: 'Geist Mono'; */
+  font-family: Inter var, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-weight: normal;
+  letter-spacing: 0.6px;
+}
+
+::selection {
+	@apply text-black;
+  @apply bg-white;
+}
+
+
+/* .dock {
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.10));
+  box-shadow:rgba(255, 255, 255, 0.15) 0px 0px 0px 1px inset;
+} */
+
+
+/* @media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width:1024px) */
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width:1024px) { 
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
+
+
+.child-center {
+  /* position: absolute; */
+  @apply md:absolute;
+  top: 50%;
+  left: 50%;
+  @apply md:translate-x-[-50%];
+  @apply md:translate-y-[-50%];
+  /* transform: translate(-50%, -50%); */
+}
+
+/* .console-demo {
+	background: #17181D;
+} */
+
+.rot {
+  transform: rotate(-90deg) translateX(-10rem);
+}
+
+
+/* .main-section {
+  z-index: 1;
+}
+
+.bottom-l:before {
+  @apply bg-sky-400;
+  content: "";
+  width: 1px;
+  height: 9px;
+  @apply absolute;
+  top: -4px;
+}
+.bottom-l:after {
+  @apply bg-sky-400;
+  content: "";
+  width: 9px;
+  height: 1px;
+  @apply absolute;
+  left: -4px;
+} */
+
+.secured-by-onboardbase {
+	position: relative;
+	overflow: hidden;
+}
+
+/* .secured-by-onboardbase img {
+	height: 0.75rem;
+} */
+
+.secured-by-onboardbase:before {
+	animation: highlightGlow 3.5s;
+	animation-delay: 1.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-out;
+	background: linear-gradient(180deg,rgba(255,255,255,0) 0,rgba(255,255,255,.18) 25%,rgba(255,255,255,.3) 50%,rgba(255,255,255,.18) 75%,rgba(255,255,255,0));
+	content: "";
+	display: block;
+	height: 90px;
+	left: -60%;
+	position: absolute;
+	top: -150px;
+	transform: rotate(-25deg);
+	width: 200px;
+}
+
+@keyframes highlightGlow {
+	0% {
+			left: -100%;
+			top: -150px
+	}
+
+	50% {
+			left: 100%;
+			top: 150px
+	}
+
+	to {
+			left: 100%;
+			top: 150px
+	}
+}
+
+
+
+.text-ob-gray-color {
+	color: var(--gray-color);
+}
+
+.radial-gradient {
+	background: rgb(217,217,217);
+	background: radial-gradient(circle, rgba(255,255,255,0.100000) 1%, rgba(0,0,0,0.000000000000005) 70%);
+}
+
+
+
+/* .child-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.tooltip {
+	@apply relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+	@apply max-w-xs;
+  min-width: 100px;
+  background-color: var(--fad-dark);
+  @apply text-white;
+  @apply text-center;
+  @apply rounded-md;
+	@apply p-1;
+	@apply text-xs;
+	@apply font-medium;
+	@apply mx-auto;
+	@apply -ml-8;
+	@apply mt-2;
+
+  /* Position the tooltip */
+  @apply absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  @apply visible;
+}
+
+
+/* md */
+@media (min-width: 768px) {
+	.radial-gradient {
+		width: 550px;
+		height: 550px;
+	}
+}
+
+
+
+/* lg */
+@media (min-width: 1024px) {
+	.radial-gradient {
+		width: 950px;
+		height: 950px;
+	}
+}
+
+/* xl */
+@media (min-width: 1280px) {
+	
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+	
+}
+
+/* .truncate-line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; 
+  overflow: hidden;
+} */

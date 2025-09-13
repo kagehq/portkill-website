@@ -1,0 +1,85 @@
+---
+// import Nav from "../components/nav.astro";
+// import Footer from "../components/footer.astro";
+import "../css/global.css";
+// import '@fontsource/geist-mono';
+
+const { title, description, card, url } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
+
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#1A202C" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta
+      name="keywords"
+      content="env, secret manager, envkit, starter page"
+    />
+    <meta name="pagename" content={title} />
+    <meta name="url" content={url} />
+    <meta name="image" content={card} />
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content={title} />
+    <meta itemprop="description" content={description} />
+    <meta itemprop="image" content={card} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@withkage" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={card} />
+    <meta name="twitter:creator" content="@withkage" />
+    <meta name="twitter:url" content="https://twitter.com/withkage" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={card} />
+    <link rel="canonical" href={url} />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="portkill" />
+    <meta name="apple-mobile-web-app-title" content="portkill" />
+    <meta name="theme-color" content="#fff" />
+    <meta name="msapplication-navbutton-color" content="#14171A" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+  </head>
+  <body class="bg-black z-0">
+    <noscript>
+      <strong
+        >We're sorry but Port Kill doesn't work properly without Javascript
+        enabled. Please enable it to continue.</strong
+      >
+    </noscript>
+    <div class="app antialiased relative w-full h-screen min-h-screen px-8 pt-10 md:pt-14 text-white max-w-2xl mx-auto">
+      <!-- <Nav/> -->
+      <slot />
+      <!-- <Footer /> -->
+    </div>
+  </body>
+</html>
+<!-- JavaScript -->
+<script type="module" src="/script.js"></script>
+<!-- <script src="https://sln.portkill.com/seline.js" data-api-host="https://sln.portkill.com" async></script> -->
